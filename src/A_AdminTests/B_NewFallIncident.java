@@ -40,9 +40,13 @@ public class B_NewFallIncident
 		
 		selenium.waitUntilId("IncidentNumber");
 		
-		selenium.sendKeysById(Constants.idDateofIncident, "3-01-2015");
+		selenium.clickElementById(Constants.idDateofIncident);
 		
-		selenium.sendKeysById(Constants.idTimeofIncident, "1:01 AM");
+		selenium.chooseDateInDatePicker("March", "2014", "31");
+		
+		selenium.clickElementById(Constants.idTimeofIncident);
+		
+		selenium.chooseTimeInTimePicker("1", "01", "AM");
 		
 		selenium.clickElementById(Constants.idIncidentDepartment);
 		
