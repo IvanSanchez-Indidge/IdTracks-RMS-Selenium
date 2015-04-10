@@ -17,7 +17,7 @@ public class NewGeneralIncident
 		selenium.setUp();
 	}
 
-	//@After
+	@After
 	public void closeBrowser() throws Exception
 	{
 		selenium.closeBrowser();

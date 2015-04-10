@@ -279,17 +279,17 @@ public class SeleniumFunctions
 	
 	public void chooseTimeInTimePicker(String hourWanted, String minuteWanted, String meridianWanted)
 	{
-		WebElement hour = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[2]/td[1]/input"));
-		WebElement minute = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[2]/td[3]/input"));
-		WebElement meridian = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[2]/td[5]/input"));
+		WebElement hour = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[1]/input"));
+		WebElement minute = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[3]/input"));
+		WebElement meridian = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[5]/input"));
 		
-		WebElement incrementHourArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[1]/td[1]"));
-		WebElement incrementMinuteArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[1]/td[3]"));
+		WebElement incrementHourArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[1]"));
+		WebElement incrementMinuteArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[3]"));
 		
-		//WebElement decrementHourArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[3]/td[1]"));
-		//WebElement decrementMinuteArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[3]/td[3]"));
+		//WebElement decrementHourArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[3]/td[1]"));
+		//WebElement decrementMinuteArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[3]/td[3]"));
 		
-		WebElement incrementMeridianArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget dropdown-menu timepicker-orient-left timepicker-orient-top open ')]/table/tbody/tr[1]/td[5]"));
+		WebElement incrementMeridianArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[5]"));
 		
 		while(!hour.getAttribute("value").contentEquals(hourWanted))
 		{
