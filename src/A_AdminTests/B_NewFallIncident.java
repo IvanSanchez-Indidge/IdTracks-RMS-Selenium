@@ -42,7 +42,7 @@ public class B_NewFallIncident
 		
 		selenium.clickElementById(Constants.idDateofIncident);
 		
-		selenium.chooseDateInDatePicker("March", "2014", "31");
+		selenium.chooseDateInDatePicker("March", "03", "2014", "31");
 		
 		selenium.clickElementById(Constants.idTimeofIncident);
 		

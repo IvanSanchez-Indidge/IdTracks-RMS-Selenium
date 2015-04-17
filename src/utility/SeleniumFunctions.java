@@ -63,8 +63,8 @@ public class SeleniumFunctions
 		
 		clickElementByxPath(Constants.xPathloginButton);
 		
-		String bodyText = findElementById("main-container").getText();
-		assertTrue("Unsuccessful login!", bodyText.contains("Welcome to Ace (v1.3.1) , the lightweight, feature-rich and easy to use admin template."));
+		String title = driver.getTitle();
+		assertTrue("Unsuccessful login!", title.contains("RMS | Dashboard"));
 	}
 	
 	/* Used when you want to wait for an element to appear providing its id. Used mostly when the element doesn't appear as fast as the code is executed */
@@ -195,85 +195,126 @@ public class SeleniumFunctions
 		return textFound;
 	}
 	
-	public void chooseDateInDatePicker(String monthWanted, String yearWanted, String dayWanted)
+	public void chooseDateInDatePicker(String monthWantedInWord, String numberOfMonthWanted, String numberOfYearWanted, String numberOfDayWanted)
 	{
-		WebElement monthYear = driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr[1]/th[2]"));
+		String dateInBox = findElementById(Constants.idDateOfIncident).getAttribute("value");
+		String dateWanted = numberOfMonthWanted + "/" + numberOfDayWanted + "/" + numberOfYearWanted;
 		
-		WebElement prevArrow = driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr[1]/th[1]"));
-		WebElement nextArrow = driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr[1]/th[3]"));
+		WebElement monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
+		
+		WebElement prevArrow = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[1]");
+		WebElement nextArrow = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[3]");
 		
 		String[] initialMonthYearInPicker = monthYear.getText().split("\\s+");
 		
 		int initialYear = Integer.parseInt(initialMonthYearInPicker[1]);
-		int year = Integer.parseInt(yearWanted);
+		int year = Integer.parseInt(numberOfYearWanted);
 		
-		boolean monthFound = true;
+		boolean monthFound = false;
+		boolean januaryFound = false;
 		
-		if(initialYear > year)
-		{		
-			while(initialYear > year)
-			{
-				prevArrow.click();
-				
-				monthYear = driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr[1]/th[2]"));
-				initialMonthYearInPicker = monthYear.getText().split("\\s+");
-				initialYear = Integer.parseInt(initialMonthYearInPicker[1]);
-			}
-			
-			while(!monthFound)
-			{
-				monthYear = driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr[1]/th[2]"));
-				initialMonthYearInPicker = monthYear.getText().split("\\s+");
-				
-				if(monthWanted.contentEquals(initialMonthYearInPicker[0]))
-				{
-					monthFound = true;
-				}
-				else
+		if(!dateInBox.contentEquals(dateWanted))
+		{
+			if(initialYear > year)
+			{		
+				while(initialYear > year)
 				{
 					prevArrow.click();
+					
+					monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
+					initialMonthYearInPicker = monthYear.getText().split("\\s+");
+					initialYear = Integer.parseInt(initialMonthYearInPicker[1]);
 				}
-			}
-			
-			
-		}
-		
-		else if(initialYear < year)
-		{		
-			while(initialYear < year)
-			{
-				nextArrow.click();
 				
-				monthYear = driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr[1]/th[2]"));
-				initialMonthYearInPicker = monthYear.getText().split("\\s+");
-				initialYear = Integer.parseInt(initialMonthYearInPicker[1]);
-			}
-			
-			while(!monthFound)
-			{
-				monthYear = driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr[1]/th[2]"));
-				initialMonthYearInPicker = monthYear.getText().split("\\s+");
-				
-				if(monthWanted.contentEquals(initialMonthYearInPicker[0]))
+				while(!monthFound)
 				{
-					monthFound = true;
+					monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
+					initialMonthYearInPicker = monthYear.getText().split("\\s+");
+					
+					if(monthWantedInWord.contentEquals(initialMonthYearInPicker[0]))
+					{
+						monthFound = true;
+					}
+					else
+					{
+						prevArrow.click();
+					}
 				}
-				else
+				
+				
+			}
+			
+			else if(initialYear < year)
+			{		
+				while(initialYear < year)
 				{
 					nextArrow.click();
+					
+					monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
+					initialMonthYearInPicker = monthYear.getText().split("\\s+");
+					initialYear = Integer.parseInt(initialMonthYearInPicker[1]);
+				}
+				
+				while(!monthFound)
+				{
+					monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
+					initialMonthYearInPicker = monthYear.getText().split("\\s+");
+					
+					if(monthWantedInWord.contentEquals(initialMonthYearInPicker[0]))
+					{
+						monthFound = true;
+					}
+					else
+					{
+						nextArrow.click();
+					}
 				}
 			}
-		}
-		
-		WebElement datepicker = driver.findElement(By.xpath("//table[@class=' table-condensed']"));
-		List<WebElement> days = datepicker.findElements(By.tagName("td"));
-		
-		for(WebElement dayCell : days)
-		{
-			if(dayCell.getText().contentEquals(dayWanted))
+			
+			else if(initialYear == year)
 			{
-				dayCell.click();
-				break;
+				while(!januaryFound)
+				{
+					monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
+					initialMonthYearInPicker = monthYear.getText().split("\\s+");
+					
+					if(initialMonthYearInPicker[0].contentEquals("January"))
+					{
+						januaryFound = true;
+					}
+					
+					else
+					{
+						prevArrow.click();
+					}
+				}
+				
+				while(!monthFound)
+				{
+					monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
+					initialMonthYearInPicker = monthYear.getText().split("\\s+");
+					
+					if(monthWantedInWord.contentEquals(initialMonthYearInPicker[0]))
+					{
+						monthFound = true;
+					}
+					else
+					{
+						nextArrow.click();
+					}
+				}
+			}
+			
+			WebElement datepicker = findElementByxPath("//table[@class=' table-condensed']");
+			List<WebElement> days = datepicker.findElements(By.tagName("td"));
+			
+			for(WebElement dayCell : days)
+			{
+				if(dayCell.getText().contentEquals(numberOfDayWanted))
+				{
+					dayCell.click();
+					break;
+				}
 			}
 		}
 	}
@@ -309,44 +350,58 @@ public class SeleniumFunctions
 	}
 	
 	public void clickParentIncidentDeptWithinTreeByName(String deptName)
-	{
+	{	
 		// Reason I use findElements is because I noticed if a user opens the tree view, then closes it, and then reopens it, the div of the old one stays on the page, however it is hidden
-		List<WebElement> treeContainers = driver.findElements(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable ')]"));
+		List<WebElement> containers = driver.findElements(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable ')]"));
+		List<WebElement> treeContainers = new ArrayList<WebElement>();
 		
-		for(WebElement treeContainer : treeContainers)
-		{			
-			if(treeContainer.isDisplayed())
+		WebElement containerWeWant = null;
+		
+		for(WebElement temp : containers)
+		{
+			if(temp.getAttribute("aria-describedby").contentEquals("rmsTreeContainer"))
 			{
-				List<WebElement> liBranches = new ArrayList<WebElement>();
-				
-				WebElement treeContent = treeContainer.findElement(By.xpath("//*[@id='rmsTree']"));
-				
-				List<WebElement> treeLines = treeContent.findElements(By.tagName("li"));
-				
-				for(WebElement treeBranch : treeLines)
-				{
-					if(treeBranch.getAttribute("class").contentEquals("tree-branch"))
-					{
-						liBranches.add(treeBranch);
-					}
-				}
-				
-				for(WebElement a : liBranches)
-				{
-					WebElement branchName = a.findElement(By.className("tree-branch-name"));
-					
-					if(branchName.getText().contentEquals(deptName))
-					{
-						branchName.click();
-						break;
-					}
-				}
-				
-				WebElement bottomPanel = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog-buttonpane ui-widget-content ui-helper-clearfix ')]"));
-				
-				// TODO: CLICK BUTTON
+				treeContainers.add(temp);
 			}
 		}
+		
+		for(WebElement treeContainer : treeContainers)
+		{
+			System.out.println(treeContainer.isDisplayed());
+			
+			if(treeContainer.isDisplayed())
+			{
+				containerWeWant = treeContainer;
+//				List<WebElement> liBranches = new ArrayList<WebElement>();
+//				
+//				WebElement treeContent = treeContainer.findElement(By.xpath("//*[@id='rmsTree']"));
+//				
+//				List<WebElement> treeLines = treeContent.findElements(By.className("tree-branch"));
+//				
+//				for(WebElement treeBranch : treeLines)
+//				{
+//					if(treeBranch.getAttribute("id") != null)
+//					{
+//						System.out.println(treeBranch.getAttribute("id"));
+//						liBranches.add(treeBranch);
+//					}
+//				}
+//				
+//				for(WebElement a : liBranches)
+//				{
+//					WebElement branchName = a.findElement(By.className("tree-branch-name"));
+//					
+//					if(branchName.getText().contentEquals(deptName))
+//					{
+//						System.out.println(branchName.getText());
+//						branchName.click();
+//						break;
+//					}
+//				}
+			}
+		}
+		
+		System.out.println(containerWeWant.getAttribute("aria-labelledby"));
 	}
 	
 	public int findNumRowsInTableById(String tableId)

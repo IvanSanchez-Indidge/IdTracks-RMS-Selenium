@@ -2,7 +2,7 @@ package utility;
 
 public class Constants
 {
-	public static String adminEmail = "jordan.sloan@indidge.com";
+	public static String adminEmail = "riskmanager@indidge.com";
 	public static String adminPassword = "Indidge$1";
 	
 	public static String xPathloginButton												= "/html/body[@class='login-layout']/div[@class='main-container']/div[@class='main-content']/div[@class='row']/div[@class='col-sm-10 col-sm-offset-1']/div[@class='login-container']/div[@class='position-relative']/div[@id='login-box']/div[@class='widget-body']/div[@class='widget-main']/form/fieldset/div[@class='clearfix']/button[@class='width-35 pull-right btn btn-sm btn-primary']";

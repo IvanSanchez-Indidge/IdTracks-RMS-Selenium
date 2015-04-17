@@ -20,7 +20,7 @@ public class Details
 		selenium.setUp();
 	}
 
-	//@Test
+	@Test
 	public void test() throws Exception
 	{
 		selenium.setUpWait();
@@ -61,17 +61,17 @@ public class Details
 		
 		//selenium.selectVisibleTextByXpath(Constants.xpathIncidentOccured, "Inpatient");
 		
-		selenium.clickElementById(Constants.idDateofIncident);
+		selenium.clickElementById(Constants.idDateOfIncident);
 		
-		selenium.chooseDateInDatePicker("April", "2015", "23");
+		selenium.chooseDateInDatePicker("February", "02","2015", "23");
 		
-		selenium.clickElementById(Constants.idTimeofIncident);
+		selenium.clickElementById(Constants.idTimeOfIncident);
 		
-		selenium.chooseTimeInTimePicker("1", "02", "AM");
+		selenium.chooseTimeInTimePicker("8", "30", "PM");
 		
 		selenium.clickElementByxPath(Constants.xpathIncidentTypeTab);
 		
-		//selenium.waitUntilId(Constants.idIncidentTypeWindow);
+		selenium.waitUntilId(Constants.idIncidentTypeAccident);
 		
 		selenium.clickElementById(Constants.idIncidentTypeAccident);
 		
@@ -85,8 +85,10 @@ public class Details
 		
 		//selenium.waitUntilId(Constants.idIncidentDeptWindow);
 		
-		selenium.clickElementByxPath(Constants.xpathIncidentDeptAdmissions);
+		//selenium.clickElementByxPath(Constants.xpathIncidentDeptAdmissions);
 		
+		selenium.clickParentIncidentDeptWithinTreeByName("Clinic");
+		/*
 		selenium.clickElementByxPath(Constants.xpathIncidentDeptWindowOkButton);
 		
 		//selenium.selectSpanTextByXpath(Constants.xpathIncidentOccuredToggle, Constants.xpathIncidentOccuredSearch, "Residential");
@@ -99,11 +101,10 @@ public class Details
 		
 		//selenium.selectSpanTextByXpath(Constants.xpathIncidentLocationToggle, Constants.xpathIncidentLocationSearch, "public");
 		
-		
-		selenium.sendKeysById(Constants.idPlaceOfIncident, "place");
+		//selenium.sendKeysById(Constants.idPlaceOfIncident, "place");
 		
 		/* Add patient not getting updated*/
-		
+		/*
 		selenium.clickElementById(Constants.idAddPatient);
 		
 		selenium.sendKeysById(Constants.idAdmissionNumber, "1");
@@ -171,7 +172,7 @@ public class Details
 		
 		selenium.clickElementById(Constants.idNurseDateofIncident);
 		
-		selenium.chooseDateInDatePicker("May", "2015", "21");
+		selenium.chooseDateInDatePicker("May", "05","2015", "21");
 		
 		selenium.clickElementById(Constants.idNurseTimeOfIncident);
 		
@@ -195,11 +196,11 @@ public class Details
 		
 		selenium.clickElementById(Constants.idPhysicianDateOfIncident);
 		
-		selenium.chooseDateInDatePicker("June", "2015", "21");
+		selenium.chooseDateInDatePicker("June", "06", "2015", "21");
 						
-		//selenium.clickElementById(Constants.idPhysicianTimeOfIncident);
+		selenium.clickElementById(Constants.idPhysicianTimeOfIncident);
 		
-		//selenium.chooseTimeInTimePicker("1", "03", "AM");  Displaying NosuchElement Exception 
+		selenium.chooseTimeInTimePicker("1", "03", "AM");
 		
 				
 		selenium.sendKeysById(Constants.idPhysicianFirstName, "Nicholas");
@@ -215,7 +216,7 @@ public class Details
 		//selenium.isAlertPresent();
 		
 		/* Updation Alert popup - couldn't get the xpath/id - need to check with popup*/
-		
+		/*
 		selenium.waitUntilxPath(Constants.xpathDetailsIncidentPage);
 		
 		selenium.clickElementByxPath(Constants.xpathIncidentLeftNav);
@@ -241,11 +242,9 @@ public class Details
 		selenium.clearElementById(Constants.idPlaceOfIncident);
 		
 		/*except description field , nurse and physician details are not getting updated*/
-		
-				
 	}
 	
-	@Test
+	//@Test
 	public void test_1() throws Exception
 	{
 		
@@ -297,7 +296,7 @@ public class Details
 	}
 		
 
-	@After
+	//@After
 	public void closeBrowser() throws Exception
 	{
 		selenium.closeBrowser();
