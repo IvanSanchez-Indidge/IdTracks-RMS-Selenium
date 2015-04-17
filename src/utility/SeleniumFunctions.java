@@ -2,6 +2,7 @@ package utility;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -304,6 +305,47 @@ public class SeleniumFunctions
 		while(!meridian.getAttribute("value").contentEquals(meridianWanted))
 		{
 			incrementMeridianArrow.click();
+		}
+	}
+	
+	public void clickParentIncidentDeptWithinTreeByName(String deptName)
+	{
+		// Reason I use findElements is because I noticed if a user opens the tree view, then closes it, and then reopens it, the div of the old one stays on the page, however it is hidden
+		List<WebElement> treeContainers = driver.findElements(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable ')]"));
+		
+		for(WebElement treeContainer : treeContainers)
+		{			
+			if(treeContainer.isDisplayed())
+			{
+				List<WebElement> liBranches = new ArrayList<WebElement>();
+				
+				WebElement treeContent = treeContainer.findElement(By.xpath("//*[@id='rmsTree']"));
+				
+				List<WebElement> treeLines = treeContent.findElements(By.tagName("li"));
+				
+				for(WebElement treeBranch : treeLines)
+				{
+					if(treeBranch.getAttribute("class").contentEquals("tree-branch"))
+					{
+						liBranches.add(treeBranch);
+					}
+				}
+				
+				for(WebElement a : liBranches)
+				{
+					WebElement branchName = a.findElement(By.className("tree-branch-name"));
+					
+					if(branchName.getText().contentEquals(deptName))
+					{
+						branchName.click();
+						break;
+					}
+				}
+				
+				WebElement bottomPanel = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog-buttonpane ui-widget-content ui-helper-clearfix ')]"));
+				
+				// TODO: CLICK BUTTON
+			}
 		}
 	}
 	

@@ -17,7 +17,7 @@ public class NewGeneralIncident
 		selenium.setUp();
 	}
 
-	@After
+	//@After
 	public void closeBrowser() throws Exception
 	{
 		selenium.closeBrowser();
@@ -42,10 +42,16 @@ public class NewGeneralIncident
 		
 		//selenium.clickElementById(Constants.idDateOfIncident);
 		
-		//selenium.chooseDateInDatePickerById("January", "2010", "5");
+		//selenium.chooseDateInDatePicker("January", "2015", "5");
 		
-		selenium.clickElementById(Constants.idTimeOfIncident);
+		//selenium.clickElementById(Constants.idTimeOfIncident);
 		
-		selenium.chooseTimeInTimePicker("5", "30", "PM");
+		//selenium.chooseTimeInTimePicker("5", "30", "PM");
+		
+		selenium.clickElementById(Constants.idIncidentDepartment);
+		
+		selenium.clickParentIncidentDeptWithinTreeByName("Clinic");
+		
+		selenium.clickElementByxPath(Constants.xPathIncidentDepartmentWindowOkButton);
 	}
 }
