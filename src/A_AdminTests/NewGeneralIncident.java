@@ -24,7 +24,7 @@ public class NewGeneralIncident
 	}
 	
 	@Test
-	public void addFallIncident_1()
+	public void addFallIncident_1() throws InterruptedException
 	{
 		selenium.setUpWait();
 		
@@ -50,8 +50,10 @@ public class NewGeneralIncident
 		
 		selenium.clickElementById(Constants.idIncidentDepartment);
 		
+		selenium.waitUntilId(Constants.idRmsTreeContainer);
+		
 		selenium.clickParentIncidentDeptWithinTreeByName("Clinic");
 		
-		selenium.clickElementByxPath(Constants.xPathIncidentDepartmentWindowOkButton);
+		
 	}
 }

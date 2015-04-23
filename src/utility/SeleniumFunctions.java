@@ -349,8 +349,10 @@ public class SeleniumFunctions
 		}
 	}
 	
-	public void clickParentIncidentDeptWithinTreeByName(String deptName)
-	{	
+	//Must open the tree first, then use this. You do NOT need to click the ok button. It is already done within this function
+	public void clickParentIncidentDeptWithinTreeByName(String deptName) throws InterruptedException
+	{
+		Thread.sleep(1000);
 		// Reason I use findElements is because I noticed if a user opens the tree view, then closes it, and then reopens it, the div of the old one stays on the page, however it is hidden
 		List<WebElement> containers = driver.findElements(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable ')]"));
 		List<WebElement> treeContainers = new ArrayList<WebElement>();
@@ -366,42 +368,39 @@ public class SeleniumFunctions
 		}
 		
 		for(WebElement treeContainer : treeContainers)
-		{
-			System.out.println(treeContainer.isDisplayed());
-			
+		{			
 			if(treeContainer.isDisplayed())
 			{
 				containerWeWant = treeContainer;
-//				List<WebElement> liBranches = new ArrayList<WebElement>();
-//				
-//				WebElement treeContent = treeContainer.findElement(By.xpath("//*[@id='rmsTree']"));
-//				
-//				List<WebElement> treeLines = treeContent.findElements(By.className("tree-branch"));
-//				
-//				for(WebElement treeBranch : treeLines)
-//				{
-//					if(treeBranch.getAttribute("id") != null)
-//					{
-//						System.out.println(treeBranch.getAttribute("id"));
-//						liBranches.add(treeBranch);
-//					}
-//				}
-//				
-//				for(WebElement a : liBranches)
-//				{
-//					WebElement branchName = a.findElement(By.className("tree-branch-name"));
-//					
-//					if(branchName.getText().contentEquals(deptName))
-//					{
-//						System.out.println(branchName.getText());
-//						branchName.click();
-//						break;
-//					}
-//				}
+				break;
 			}
 		}
 		
-		System.out.println(containerWeWant.getAttribute("aria-labelledby"));
+		WebElement treeContent = containerWeWant.findElement(By.xpath("//*[@id='rmsTree']"));
+		
+		List<WebElement> treeLines = treeContent.findElements(By.className("tree-branch"));
+		
+		for(WebElement a : treeLines)
+		{
+			WebElement branchName = a.findElement(By.className("tree-branch-name"));
+			
+			if(branchName.getText().contentEquals(deptName))
+			{
+				branchName.click();
+				break;
+			}
+		}
+		
+		List<WebElement> buttonsInContainer = containerWeWant.findElements(By.tagName("button"));
+		
+		for(WebElement button : buttonsInContainer)
+		{
+			if(button.getText().contentEquals("OK"))
+			{
+				button.click();
+				break;
+			}
+		}
 	}
 	
 	public int findNumRowsInTableById(String tableId)
