@@ -48,9 +48,9 @@ public class NewGeneralIncident
 		
 		selenium.chooseTimeInTimePicker("5", "30", "PM");
 		
-//		selenium.clickElementById(Constants.idIncidentType);
-//		
-//		selenium.clickIncidentType("Assault", "");
+		selenium.clickElementById(Constants.idIncidentType);
+		
+		selenium.clickIncidentType("Assault", "Attempted");
 		
 		selenium.clickElementById(Constants.idIncidentDepartment);
 		

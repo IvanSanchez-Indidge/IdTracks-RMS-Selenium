@@ -403,6 +403,7 @@ public class SeleniumFunctions
 		}
 	}
 	
+	//Must open the tree first, then use this. You do NOT need to click the ok button. It is already done within this function
 	public void clickIncidentType(String parentDept, String childDept) throws InterruptedException
 	{
 		Thread.sleep(1000);
@@ -441,21 +442,39 @@ public class SeleniumFunctions
 			
 			if(branchName.getText().contentEquals(parentDept))
 			{
-				parentBranch = temp;
 				branchName.click();
+				parentBranch = temp;
 				break;
 			}
 		}
 		
+		Thread.sleep(1000);
 		
-//		WebElement childrenContainer = parentBranch.findElement(By.tagName("ul"));
-//		
-//		List<WebElement> children = childrenContainer.findElements(By.tagName("li"));
-//		
-//		for(WebElement temp : children)
-//		{
-//			System.out.println(temp.getText());
-//		}
+		WebElement childrenContainer = parentBranch.findElement(By.className("tree-branch-children"));
+		
+		List<WebElement> children = childrenContainer.findElements(By.className("tree-item"));
+		
+		for(WebElement temp : children)
+		{
+			WebElement childrenName = temp.findElement(By.className("tree-item-name"));
+			
+			if(childrenName.getText().contentEquals(childDept))
+			{
+				childrenName.click();
+				break;
+			}
+		}
+		
+		List<WebElement> buttonsInContainer = containerWeWant.findElements(By.tagName("button"));
+		
+		for(WebElement button : buttonsInContainer)
+		{
+			if(button.getText().contentEquals("OK"))
+			{
+				button.click();
+				break;
+			}
+		}
 	}
 	
 	public int findNumRowsInTableById(String tableId)
