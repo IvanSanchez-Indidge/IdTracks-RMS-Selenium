@@ -37,30 +37,30 @@ public class Close
 		
 		selenium.waitUntilId("incident-table");	
 		
-		String incidentNumber = selenium.findElementByxPath(Constants.xpathIncidentNumber).getText();
+		String incidentNumber = selenium.findElementByxPath(Constants.xPathIncidentNumber).getText();
 							
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 						
-		selenium.clickElementByxPath(Constants.xpathActionsButton);
+		selenium.clickElementByxPath(Constants.xPathActionsButton);
 				
-		selenium.clickElementByxPath(Constants.xpathCloseListButton);
+		selenium.clickElementByxPath(Constants.xPathCloseListButton);
 		
-		selenium.waitUntilxPath(Constants.xpathCloseWarning);
+		selenium.waitUntilxPath(Constants.xPathCloseWarning);
 		
-		boolean closeWarning = selenium.findElementByxPath(Constants.xpathCloseWarning).isDisplayed();
+		boolean closeWarning = selenium.findElementByxPath(Constants.xPathCloseWarning).isDisplayed();
 		assertTrue("Warning Message Not Displayed " , closeWarning );
 		
-		String warningText = selenium.findElementByxPath(Constants.xpathCloseWarningText).getText();
+		String warningText = selenium.findElementByxPath(Constants.xPathCloseWarningText).getText();
 		assertTrue("Mismatch in Incident Number" , warningText.contains(incidentNumber));
 				
-		selenium.clickElementByxPath(Constants.xpathNoCloseButton);
+		selenium.clickElementByxPath(Constants.xPathNoCloseButton);
 		
 	}
 	
 	@Test
 	public void close_Yes() throws Exception
 	{
-	selenium.setUp();
+	selenium.setUpWait();
 	
 	selenium.adminLogin();
 	
@@ -70,31 +70,31 @@ public class Close
 	
 	selenium.waitUntilId("incident-table");	
 	
-	String incidentNumber = selenium.findElementByxPath(Constants.xpathIncidentNumber).getText();
+	String incidentNumber = selenium.findElementByxPath(Constants.xPathIncidentNumber).getText();
 					
-	selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+	selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 					
-	selenium.clickElementByxPath(Constants.xpathActionsButton);
+	selenium.clickElementByxPath(Constants.xPathActionsButton);
 		
-	selenium.clickElementByxPath(Constants.xpathCloseListButton);
+	selenium.clickElementByxPath(Constants.xPathCloseListButton);
 	
-	selenium.waitUntilxPath(Constants.xpathCloseWarning);
+	selenium.waitUntilxPath(Constants.xPathCloseWarning);
 	
-	boolean closeWarning = selenium.findElementByxPath(Constants.xpathCloseWarning).isDisplayed();
+	boolean closeWarning = selenium.findElementByxPath(Constants.xPathCloseWarning).isDisplayed();
 	assertTrue("Warning Message Not Displayed " , closeWarning );
 	
-	String warningText = selenium.findElementByxPath(Constants.xpathCloseWarningText).getText();
+	String warningText = selenium.findElementByxPath(Constants.xPathCloseWarningText).getText();
 	assertTrue("Mismatch in Incident Number" , warningText.contains(incidentNumber));
 		
-	selenium.clickElementByxPath(Constants.xpathYesCloseButton);
+	selenium.clickElementByxPath(Constants.xPathYesCloseButton);
 	
 	selenium.waitUntilId("incident-table");
 	
-	selenium.clearElementByxPath(Constants.xpathIncidentSearch);
+	selenium.clearElementByxPath(Constants.xPathIncidentSearch);
 	
-	selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+	selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 	
-	String status = selenium.findElementByxPath(Constants.xpathIncidentStatus).getText();
+	String status = selenium.findElementByxPath(Constants.xPathIncidentStatus).getText();
 	assertTrue("Incident Not closed Properly", status != "open");	
 		
 	}
@@ -103,7 +103,7 @@ public class Close
 	public void reopen()throws Exception
 	{
 		
-		selenium.setUp();
+		selenium.setUpWait();
 		
 		selenium.adminLogin();
 		
@@ -113,31 +113,31 @@ public class Close
 		
 		selenium.waitUntilId("incident-table");	
 		
-		String incidentNumber = selenium.findElementByxPath(Constants.xpathIncidentNumber).getText();
+		String incidentNumber = selenium.findElementByxPath(Constants.xPathIncidentNumber).getText();
 						
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 						
-		selenium.clickElementByxPath(Constants.xpathActionsButton);
+		selenium.clickElementByxPath(Constants.xPathActionsButton);
 		
-		selenium.clickElementByxPath(Constants.xpathReopenListButton);
+		selenium.clickElementByxPath(Constants.xPathReopenListButton);
 		
-		selenium.waitUntilxPath(Constants.xpathReopenWarning);
+		selenium.waitUntilxPath(Constants.xPathReopenWarning);
 		
-		boolean reopenWarning = selenium.findElementByxPath(Constants.xpathReopenWarning).isDisplayed();
+		boolean reopenWarning = selenium.findElementByxPath(Constants.xPathReopenWarning).isDisplayed();
 		assertTrue("Warning Message Not Disp[alyed" , reopenWarning);
 		
-		String warningText = selenium.findElementByxPath(Constants.xpathReopenWarningText).getText();
+		String warningText = selenium.findElementByxPath(Constants.xPathReopenWarningText).getText();
 		assertTrue("Mismatch in Incident Number" , warningText.contains(incidentNumber));
 		
-		selenium.clickElementByxPath(Constants.xpathYesReopenButton);
+		selenium.clickElementByxPath(Constants.xPathYesReopenButton);
 		
 		selenium.waitUntilId("incident-table");
 		
-		selenium.clearElementByxPath(Constants.xpathIncidentSearch);
+		selenium.clearElementByxPath(Constants.xPathIncidentSearch);
 		
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 		
-		String status = selenium.findElementByxPath(Constants.xpathIncidentStatus).getText();
+		String status = selenium.findElementByxPath(Constants.xPathIncidentStatus).getText();
 		assertTrue("Incident Not Reopened Properly", status != "Closed");
 		
 		

@@ -6,12 +6,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 
 import utility.Constants;
 import utility.SeleniumFunctions;
 
 public class Details
+
 {
+	public WebDriver driver;
 	SeleniumFunctions selenium = new SeleniumFunctions();
 
 	@Before
@@ -33,23 +36,23 @@ public class Details
 		
 		selenium.waitUntilId("incident-table");	
 		
-		String incidentNumber = selenium.findElementByxPath(Constants.xpathIncidentNumber).getText();
+		String incidentNumber = selenium.findElementByxPath(Constants.xPathIncidentNumber).getText();
 		
 		System.out.println("The incident number :" + incidentNumber);
 					
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 						
-		selenium.clickElementByxPath(Constants.xpathActionsButton);
+		selenium.clickElementByxPath(Constants.xPathActionsButton);
 		
-		selenium.clickElementByxPath(Constants.xpathDetailListButton);
+		selenium.clickElementByxPath(Constants.xPathDetailListButton);
 		
-		selenium.waitUntilxPath(Constants.xpathDetailsIncidentPage);
+		selenium.waitUntilxPath(Constants.xPathDetailsIncidentPage);
 		
-		String pageTitle = selenium.findElementByxPath(Constants.xpathDetailsIncidentPage).getText();
+		String pageTitle = selenium.findElementByxPath(Constants.xPathDetailsIncidentPage).getText();
 						
 		assertTrue("Navigation error !" , pageTitle.contains("Details Incident General"));
 		
-		String detailsIncidentNumber = selenium.findElementByxPath(Constants.xpathDetailsIncidentNumber).getAttribute("value");
+		String detailsIncidentNumber = selenium.findElementByxPath(Constants.xPathDetailsIncidentNumber).getAttribute("value");
 				
 		System.out.println("incident number details page:" + detailsIncidentNumber);
 		
@@ -61,50 +64,42 @@ public class Details
 		
 		//selenium.selectVisibleTextByXpath(Constants.xpathIncidentOccured, "Inpatient");
 		
-		selenium.clickElementById(Constants.idDateOfIncident);
+		selenium.clickElementById(Constants.idDateofIncident);
 		
-		selenium.chooseDateInDatePicker("February", "02","2015", "23");
+		selenium.chooseDateInDatePicker("April", "4", "2015", "23");
 		
-		selenium.clickElementById(Constants.idTimeOfIncident);
+		selenium.clickElementById(Constants.idTimeofIncident);
 		
-		selenium.chooseTimeInTimePicker("8", "30", "PM");
+		selenium.chooseTimeInTimePicker("1", "02", "AM");
 		
-		selenium.clickElementByxPath(Constants.xpathIncidentTypeTab);
+		selenium.clickElementByxPath(Constants.xPathIncidentTypeTab);
 		
-		selenium.waitUntilId(Constants.idIncidentTypeAccident);
+		//selenium.waitUntilId(Constants.idIncidentTypeWindow);
 		
 		selenium.clickElementById(Constants.idIncidentTypeAccident);
 		
-		selenium.waitUntilxPath(Constants.xpathIncidentTypeVehicle);
+		selenium.waitUntilxPath(Constants.xPathIncidentTypeVehicle);
 		
-		selenium.clickElementByxPath(Constants.xpathIncidentTypeVehicle);
+		selenium.clickElementByxPath(Constants.xPathIncidentTypeVehicle);
 		
-		selenium.clickElementByxPath(Constants.xpathIncidentTypeWindowOKButton);
+		selenium.clickElementByxPath(Constants.xPathIncidentTypeWindowOKButton);
 		
 		selenium.clickElementById(Constants.idIncidentDept);
 		
 		//selenium.waitUntilId(Constants.idIncidentDeptWindow);
 		
-		//selenium.clickElementByxPath(Constants.xpathIncidentDeptAdmissions);
+		selenium.clickElementByxPath(Constants.xPathIncidentDeptAdmissions);
 		
-		selenium.clickParentIncidentDeptWithinTreeByName("Clinic");
-		/*
-		selenium.clickElementByxPath(Constants.xpathIncidentDeptWindowOkButton);
+		selenium.clickElementByxPath(Constants.xPathIncidentDeptWindowOkButton);
 		
-		//selenium.selectSpanTextByXpath(Constants.xpathIncidentOccuredToggle, Constants.xpathIncidentOccuredSearch, "Residential");
+		selenium.selectSpanTextByxPath(Constants.xPathIncidentOccuredToggle, Constants.xPathIncidentOccuredSearch, "Residential");
 		
-		selenium.clickElementByxPath(Constants.xpathIncidentOccuredToggle);
-		
-		selenium.sendKeysByxPath(Constants.xpathIncidentOccuredSearch, "Residential");
-		
-		selenium.enterPressByxPath(Constants.xpathIncidentOccuredSearch);
-		
-		//selenium.selectSpanTextByXpath(Constants.xpathIncidentLocationToggle, Constants.xpathIncidentLocationSearch, "public");
-		
-		//selenium.sendKeysById(Constants.idPlaceOfIncident, "place");
+		selenium.selectSpanTextByxPath(Constants.xPathIncidentLocationToggle, Constants.xPathIncidentLocationSearch, "public");
+					
+		selenium.sendKeysById(Constants.idPlaceOfIncident, "place");
 		
 		/* Add patient not getting updated*/
-		/*
+		
 		selenium.clickElementById(Constants.idAddPatient);
 		
 		selenium.sendKeysById(Constants.idAdmissionNumber, "1");
@@ -117,62 +112,32 @@ public class Details
 		
 		selenium.clickElementById(Constants.idSubmitButton);
 		
-		//selenium.selectSpanTextByXpath(Constants.xpathInjuryToggle, Constants.xpathInjurySearch, "unknown");
+		selenium.selectSpanTextByxPath(Constants.xPathInjuryToggle, Constants.xPathInjurySearch, "unknown");
 		
-		selenium.clickElementByxPath(Constants.xpathInjuryToggle);
-		
-		selenium.sendKeysByxPath(Constants.xpathInjurySearch, "unknown");
-		
-		selenium.enterPressByxPath(Constants.xpathInjurySearch);
-		
-		//selenium.selectSpanTextByXpath(Constants.xpathSeverityToggle, Constants.xpathSeveritySearch, "1");
-		
-		selenium.clickElementByxPath(Constants.xpathSeverityToggle);
-		
-		selenium.sendKeysByxPath(Constants.xpathSeveritySearch, "1");
-		
-		selenium.enterPressByxPath(Constants.xpathSeveritySearch);
+		selenium.selectSpanTextByxPath(Constants.xPathSeverityToggle, Constants.xPathSeveritySearch, "1");
 				
-		//selenium.selectSpanTextByXpath(Constants.xpathResultToggle, Constants.xpathResultSearch, "First Aid");
+		selenium.selectSpanTextByxPath(Constants.xPathResultToggle, Constants.xPathResultSearch, "First Aid");	
 		
-		selenium.clickElementByxPath(Constants.xpathResultToggle);
-		
-		selenium.sendKeysByxPath(Constants.xpathResultSearch, "First Aid");
-		
-		selenium.enterPressByxPath(Constants.xpathResultSearch);
-		
-		String firstAidResult = selenium.findElementByxPath(Constants.xpathfirstAid).getText();
+		String firstAidResult = selenium.findElementByxPath(Constants.xPathfirstAid).getText();
 		
 		System.out.println(firstAidResult);
 		
 		//assertTrue("Already Exist", firstAidResult.)
 		
-		//selenium.selectSpanTextByXpath(Constants.xpathResultToggle, Constants.xpathResultSearch, "Urgent Care/specialist");
+		selenium.selectSpanTextByxPath(Constants.xPathResultToggle, Constants.xPathResultSearch, "Urgent Care/specialist");
 		
-		selenium.clickElementByxPath(Constants.xpathResultToggle);
-		
-		selenium.sendKeysByxPath(Constants.xpathResultSearch, "Urgent Care/specialist");
-		
-		selenium.enterPressByxPath(Constants.xpathResultSearch);
-		
-		selenium.sendKeysByxPath(Constants.xpathDetailsDescription, "asdjadhf");
+		selenium.sendKeysByxPath(Constants.xPathDetailsDescription, "asdjadhf");
 		
 		
-		String detailsDescription = selenium.findElementByxPath(Constants.xpathDetailsDescription).getAttribute("value");
+		String detailsDescription = selenium.findElementByxPath(Constants.xPathDetailsDescription).getAttribute("value");
 		
 		System.out.println("description"+detailsDescription);
 		
-		//selenium.selectSpanTextByXpath(Constants.xpathNurseMedReportToggle,Constants.xpathNurseMedReportSearch, "Staff");
-		
-		selenium.clickElementByxPath(Constants.xpathNurseMedReportToggle);
-		
-		selenium.sendKeysByxPath(Constants.xpathNurseMedReportSearch, "Staff");
-		
-		selenium.enterPressByxPath(Constants.xpathNurseMedReportSearch);
+		selenium.selectSpanTextByxPath(Constants.xPathNurseMedReportToggle,Constants.xPathNurseMedReportSearch, "Staff");
 		
 		selenium.clickElementById(Constants.idNurseDateofIncident);
 		
-		selenium.chooseDateInDatePicker("May", "05","2015", "21");
+		selenium.chooseDateInDatePicker("May", "5", "2015", "21");
 		
 		selenium.clickElementById(Constants.idNurseTimeOfIncident);
 		
@@ -186,21 +151,15 @@ public class Details
 		
 		selenium.sendKeysById(Constants.idNurseReport, "text");
 		
-		//selenium.selectSpanTextByXpath(Constants.xpathPhysicianMedReportToggle, Constants.xpathPhysicianMedReportSearch, "patient");
-		
-		selenium.clickElementByxPath(Constants.xpathPhysicianMedReportToggle);
-		
-		selenium.sendKeysByxPath(Constants.xpathPhysicianMedReportSearch, "patient");
-		
-		selenium.enterPressByxPath(Constants.xpathPhysicianMedReportSearch);
+		selenium.selectSpanTextByxPath(Constants.xPathPhysicianMedReportToggle, Constants.xPathPhysicianMedReportSearch, "patient");
 		
 		selenium.clickElementById(Constants.idPhysicianDateOfIncident);
 		
-		selenium.chooseDateInDatePicker("June", "06", "2015", "21");
+		selenium.chooseDateInDatePicker("June", "6", "2015", "21");
 						
-		selenium.clickElementById(Constants.idPhysicianTimeOfIncident);
+		//selenium.clickElementById(Constants.idPhysicianTimeOfIncident);
 		
-		selenium.chooseTimeInTimePicker("1", "03", "AM");
+		//selenium.chooseTimeInTimePicker("1", "03", "AM"); /* Displaying NosuchElement Exception*/ 
 		
 				
 		selenium.sendKeysById(Constants.idPhysicianFirstName, "Nicholas");
@@ -211,27 +170,27 @@ public class Details
 		
 		selenium.sendKeysById(Constants.idPhysicianTitle, "text");
 		
-		selenium.clickElementByxPath(Constants.xpathSaveDetailsButton);		
+		selenium.clickElementByxPath(Constants.xPathSaveDetailsButton);		
 		
 		//selenium.isAlertPresent();
 		
 		/* Updation Alert popup - couldn't get the xpath/id - need to check with popup*/
-		/*
-		selenium.waitUntilxPath(Constants.xpathDetailsIncidentPage);
+		
+		selenium.waitUntilxPath(Constants.xPathDetailsIncidentPage);
 		
 		selenium.clickElementByxPath(Constants.xpathIncidentLeftNav);
 		
 		selenium.waitUntilId("incident-table");	
 				
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 						
-		selenium.clickElementByxPath(Constants.xpathActionsButton);
+		selenium.clickElementByxPath(Constants.xPathActionsButton);
 		
-		selenium.clickElementByxPath(Constants.xpathDetailListButton);
+		selenium.clickElementByxPath(Constants.xPathDetailListButton);
 		
-		selenium.waitUntilxPath(Constants.xpathDetailsIncidentPage);
+		selenium.waitUntilxPath(Constants.xPathDetailsIncidentPage);
 		
-		String updatedDescription = selenium.findElementByxPath(Constants.xpathDetailsDescription).getText();
+		String updatedDescription = selenium.findElementByxPath(Constants.xPathDetailsDescription).getText();
 		
 		System.out.println("Updated Description" +updatedDescription);
 		
@@ -242,13 +201,19 @@ public class Details
 		selenium.clearElementById(Constants.idPlaceOfIncident);
 		
 		/*except description field , nurse and physician details are not getting updated*/
+		
+				
 	}
 	
+	
+	
+	
+	/*Test for Notes Tab*/
 	//@Test
 	public void test_1() throws Exception
 	{
 		
-		selenium.setUp();
+		selenium.setUpWait();
 		
 		selenium.adminLogin();
         
@@ -258,45 +223,45 @@ public class Details
 		
 		selenium.waitUntilId("incident-table");	
 		
-		String incidentNumber = selenium.findElementByxPath(Constants.xpathIncidentNumber).getText();
+		String incidentNumber = selenium.findElementByxPath(Constants.xPathIncidentNumber).getText();
 		
 		System.out.println("The incident number :" + incidentNumber);
 		
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 						
-		selenium.clickElementByxPath(Constants.xpathActionsButton);
+		selenium.clickElementByxPath(Constants.xPathActionsButton);
 		
-		selenium.clickElementByxPath(Constants.xpathDetailListButton);
+		selenium.clickElementByxPath(Constants.xPathDetailListButton);
 		
-		selenium.waitUntilxPath(Constants.xpathDetailsIncidentPage);			
+		selenium.waitUntilxPath(Constants.xPathDetailsIncidentPage);			
 		
-		String detailsIncidentNumber = selenium.findElementByxPath(Constants.xpathDetailsIncidentNumber).getAttribute("value");
+		String detailsIncidentNumber = selenium.findElementByxPath(Constants.xPathDetailsIncidentNumber).getAttribute("value");
 				
 		System.out.println("incident number details page:" + detailsIncidentNumber);
 		
 		assertEquals(detailsIncidentNumber,incidentNumber);
 		
-		selenium.clickElementByxPath(Constants.xpathIncidentsDetailsTab);
+		selenium.clickElementByxPath(Constants.xPathIncidentsDetailsTab);
 		
-		selenium.clickElementByxPath(Constants.xpathDetailsNotesTab);
+		selenium.clickElementByxPath(Constants.xPathDetailsNotesTab);
 						
-		selenium.sendKeysByxPath(Constants.xpathDetailNotesTitle, "Testing");
+		selenium.sendKeysByxPath(Constants.xPathDetailNotesTitle, "Testing");
 		
-		selenium.sendKeysByxPath(Constants.xpathDetailsNotesText, "Data");
+		selenium.sendKeysByxPath(Constants.xPathDetailsNotesText, "Data");
 		
-		selenium.clickElementByxPath(Constants.xpathDetailsNotesAdd);
+		selenium.clickElementByxPath(Constants.xPathDetailsNotesAdd);
 		
 		/*Alert displayed for notes added*/
 		
-		selenium.waitUntilxPath(Constants.xpathDetailsIncidentPage);
+		selenium.waitUntilxPath(Constants.xPathDetailsIncidentPage);
 		
-		selenium.clickElementByxPath(Constants.xpathDetailsNotesTab);
+		selenium.clickElementByxPath(Constants.xPathDetailsNotesTab);
 		
 				
 	}
 		
 
-	//@After
+	@After
 	public void closeBrowser() throws Exception
 	{
 		selenium.closeBrowser();

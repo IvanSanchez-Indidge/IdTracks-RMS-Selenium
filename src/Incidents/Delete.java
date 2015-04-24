@@ -6,6 +6,7 @@ import java.util.concurrent.TimeoutException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 
 import utility.Constants;
 import utility.SeleniumFunctions;
@@ -15,6 +16,7 @@ public class Delete
 {
 	
 	SeleniumFunctions selenium = new SeleniumFunctions();
+	public WebDriver driver;
 
 	@Before
 	public void setUp() throws Exception 
@@ -38,26 +40,26 @@ public class Delete
 		
 		selenium.waitUntilId("incident-table");	
 		
-		String incidentNumber = selenium.findElementByxPath(Constants.xpathIncidentNumber).getText();
+		String incidentNumber = selenium.findElementByxPath(Constants.xPathIncidentNumber).getText();
 		
 		System.out.println("The incident number :" + incidentNumber);
 					
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 						
-		selenium.clickElementByxPath(Constants.xpathActionsButton);
+		selenium.clickElementByxPath(Constants.xPathActionsButton);
 				
-		selenium.clickElementByxPath(Constants.xpathDeletelistButton);
+		selenium.clickElementByxPath(Constants.xPathDeletelistButton);
 		
-		selenium.waitUntilxPath(Constants.xpathDeletionWarning);
+		selenium.waitUntilxPath(Constants.xPathDeletionWarning);
 						
-		boolean deletionWarning = selenium.findElementByxPath(Constants.xpathDeletionWarning).isDisplayed();
+		boolean deletionWarning = selenium.findElementByxPath(Constants.xPathDeletionWarning).isDisplayed();
 		assertTrue("Warning Message Not Displayed " , deletionWarning );
 		
-		String warningText = selenium.findElementByxPath(Constants.xpathDeleteWarningText).getText();
+		String warningText = selenium.findElementByxPath(Constants.xPathDeleteWarningText).getText();
 		assertTrue("Mismatch in Incident Number" , warningText.contains(incidentNumber));
 		System.out.println("Incident number matched");
 
-		selenium.clickElementByxPath(Constants.xpathNoDeletionButton);
+		selenium.clickElementByxPath(Constants.xPathNoDeletionButton);
 		
 		System.out.println("Deletion warning dispalyed and closed");
 		
@@ -66,7 +68,7 @@ public class Delete
 	//@Test
 	public void deleteTest() throws Exception , TimeoutException
 	{
-		selenium.setUp();
+		selenium.setUpWait();
 		
 		selenium.adminLogin();
 	
@@ -76,32 +78,32 @@ public class Delete
 		
 		selenium.waitUntilId("incident-table");	
 		
-		String incidentNumber = selenium.findElementByxPath(Constants.xpathIncidentNumber).getText();
+		String incidentNumber = selenium.findElementByxPath(Constants.xPathIncidentNumber).getText();
 		
 		System.out.println("The incident number :" + incidentNumber);
 					
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 						
-		selenium.clickElementByxPath(Constants.xpathActionsButton);
+		selenium.clickElementByxPath(Constants.xPathActionsButton);
 				
-		selenium.clickElementByxPath(Constants.xpathDeletelistButton);
+		selenium.clickElementByxPath(Constants.xPathDeletelistButton);
 		
-		selenium.waitUntilxPath(Constants.xpathDeletionWarning);
+		selenium.waitUntilxPath(Constants.xPathDeletionWarning);
 						
-		boolean deletionWarning = selenium.findElementByxPath(Constants.xpathDeletionWarning).isDisplayed();
+		boolean deletionWarning = selenium.findElementByxPath(Constants.xPathDeletionWarning).isDisplayed();
 		assertTrue("Warning Message Not Displayed " , deletionWarning );
 		
-		String warningText = selenium.findElementByxPath(Constants.xpathDeleteWarningText).getText();
+		String warningText = selenium.findElementByxPath(Constants.xPathDeleteWarningText).getText();
 		assertTrue("Mismatch in Incident Number" , warningText.contains(incidentNumber));
 		System.out.println("Incident number matched");
 
-		selenium.clickElementByxPath(Constants.xpathYesDeletionButton);
+		selenium.clickElementByxPath(Constants.xPathYesDeletionButton);
 		
 		selenium.waitUntilId("incident-table");
 		
-		selenium.sendKeysByxPath(Constants.xpathIncidentSearch, incidentNumber);
+		selenium.sendKeysByxPath(Constants.xPathIncidentSearch, incidentNumber);
 		
-		String itemnotFound = selenium.findElementByxPath(Constants.xpathNoIncident).getText();
+		String itemnotFound = selenium.findElementByxPath(Constants.xPathNoIncident).getText();
 		assertTrue("Incident not deleted" , itemnotFound.contains("No matching records found") );
 		
 		System.out.println("Incident deleted successfully");

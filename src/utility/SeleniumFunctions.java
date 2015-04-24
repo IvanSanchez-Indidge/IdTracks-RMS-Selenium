@@ -478,6 +478,17 @@ public class SeleniumFunctions
 		}
 	}
 	
+	//Thangamani made this
+	public void selectSpanTextByxPath(String toggleXpath ,String searchXpath , String searchText) throws Exception
+	{
+		clickElementByxPath(toggleXpath);
+		
+		sendKeysByxPath(searchXpath, searchText);
+		
+		enterPressByxPath(searchXpath);
+		
+	}
+	
 	public int findNumRowsInTableById(String tableId)
 	{
 		return driver.findElements(By.xpath("//table[@id='" + tableId + "']/tbody/tr")).size();
