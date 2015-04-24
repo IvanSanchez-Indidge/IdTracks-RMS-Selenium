@@ -40,13 +40,17 @@ public class NewGeneralIncident
 		
 		selenium.waitUntilId(Constants.idIncidentNumber);
 		
-		//selenium.clickElementById(Constants.idDateOfIncident);
+		selenium.clickElementById(Constants.idDateOfIncident);
 		
-		//selenium.chooseDateInDatePicker("January", "2015", "5");
+		selenium.chooseDateInDatePicker("January", "1","2015", "5");
 		
-		//selenium.clickElementById(Constants.idTimeOfIncident);
+		selenium.clickElementById(Constants.idTimeOfIncident);
 		
-		//selenium.chooseTimeInTimePicker("5", "30", "PM");
+		selenium.chooseTimeInTimePicker("5", "30", "PM");
+		
+//		selenium.clickElementById(Constants.idIncidentType);
+//		
+//		selenium.clickIncidentType("Assault", "");
 		
 		selenium.clickElementById(Constants.idIncidentDepartment);
 		

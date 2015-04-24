@@ -73,6 +73,7 @@ public class Constants
 	/*	New General Incident Page xPath's and ID's	*/
 	public static String idDateOfIncident												= "DateOfIncident";
 	public static String idTimeOfIncident												= "TimeOfIncident";
+	public static String idIncidentType													= "IncidentType";
 	
 	/*	Incidents Page	*/
 	public static String idIncidentTable												= "incident-table";

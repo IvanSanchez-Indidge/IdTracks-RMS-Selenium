@@ -403,6 +403,61 @@ public class SeleniumFunctions
 		}
 	}
 	
+	public void clickIncidentType(String parentDept, String childDept) throws InterruptedException
+	{
+		Thread.sleep(1000);
+		// Reason I use findElements is because I noticed if a user opens the tree view, then closes it, and then reopens it, the div of the old one stays on the page, however it is hidden
+		List<WebElement> containers = driver.findElements(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable ')]"));
+		List<WebElement> treeContainers = new ArrayList<WebElement>();
+		
+		WebElement parentBranch = null;
+		
+		WebElement containerWeWant = null;
+		
+		for(WebElement temp : containers)
+		{
+			if(temp.getAttribute("aria-describedby").contentEquals("rmsTreeContainer"))
+			{
+				treeContainers.add(temp);
+			}
+		}
+		
+		for(WebElement treeContainer : treeContainers)
+		{			
+			if(treeContainer.isDisplayed())
+			{
+				containerWeWant = treeContainer;
+				break;
+			}
+		}
+		
+		WebElement treeContent = containerWeWant.findElement(By.xpath("//*[@id='rmsTree']"));
+		
+		List<WebElement> treeLines = treeContent.findElements(By.className("tree-branch"));
+		
+		for(WebElement temp : treeLines)
+		{
+			WebElement branchName = temp.findElement(By.className("tree-branch-name"));
+			
+			if(branchName.getText().contentEquals(parentDept))
+			{
+				parentBranch = temp;
+				branchName.click();
+				break;
+			}
+		}
+		
+		
+//		WebElement childrenContainer = parentBranch.findElement(By.tagName("ul"));
+//		
+//		List<WebElement> children = childrenContainer.findElements(By.tagName("li"));
+//		
+//		for(WebElement temp : children)
+//		{
+//			System.out.println(temp.getText());
+//		}
+	}
+	
 	public int findNumRowsInTableById(String tableId)
 	{
 		return driver.findElements(By.xpath("//table[@id='" + tableId + "']/tbody/tr")).size();
