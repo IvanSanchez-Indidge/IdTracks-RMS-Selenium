@@ -404,6 +404,7 @@ public class SeleniumFunctions
 	}
 	
 	//Must open the tree first, then use this. You do NOT need to click the ok button. It is already done within this function
+	/*	Had trouble with the child nodes not coming in...I had to use sleep since when you click on a parent dept, it takes like half a second for the children to populate	*/
 	public void clickIncidentType(String parentDept, String childDept) throws InterruptedException
 	{
 		Thread.sleep(1000);
