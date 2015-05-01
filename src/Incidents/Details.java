@@ -92,7 +92,7 @@ public class Details
 		
 		selenium.clickElementByxPath(Constants.xPathIncidentDeptWindowOkButton);
 		
-		selenium.selectSpanTextByxPath(Constants.xPathIncidentOccuredToggle, Constants.xPathIncidentOccuredSearch, "Residential");
+		//selenium.selectSpanTextByxPath(Constants.xPathIncidentOccuredToggle, Constants.xPathIncidentOccuredSearch, "Residential");
 		
 		selenium.selectSpanTextByxPath(Constants.xPathIncidentLocationToggle, Constants.xPathIncidentLocationSearch, "public");
 					
@@ -114,7 +114,7 @@ public class Details
 		
 		selenium.selectSpanTextByxPath(Constants.xPathInjuryToggle, Constants.xPathInjurySearch, "unknown");
 		
-		selenium.selectSpanTextByxPath(Constants.xPathSeverityToggle, Constants.xPathSeveritySearch, "1");
+		//selenium.selectSpanTextByxPath(Constants.xPathSeverityToggle, Constants.xPathSeveritySearch, "1");
 				
 		selenium.selectSpanTextByxPath(Constants.xPathResultToggle, Constants.xPathResultSearch, "First Aid");	
 		

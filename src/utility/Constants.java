@@ -15,20 +15,10 @@ public class Constants
 	public static String idDateofIncident												= "DateofIncident";
 	public static String idTimeofIncident												= "TimeofIncident";
 	public static String idIncidentDepartment											= "IncidentDepartment";
-	public static String xPathAddIncidentDeptWindow										= "/html[@class=' js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths']/body[@class='no-skin']/div[@class='ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable'][2]/div[@class='ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle']/span[@id='ui-id-3']/div[@class='widget-header widget-header-small']/h4[@class='smaller']";
-	public static String xPathIncidentDepartmentAdmissions								= "/html[@class=' js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths']/body[@class='no-skin']/div[@class='ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable'][2]/div[@id='rmsTreeContainer']/ul[@id='rmsTree']/li[@id='3']/div[@class='tree-branch-header tree-folder']/span[@class='tree-branch-name']/span[@id='3-label']";
-	public static String xPathIncidentDepartmentWindowOkButton							= "/html/body/div[4]/div[3]/div/button/span";
-	
-	public static String xPathSeverityToggle 											= "//*[@id='Severity_chosen']/a/span";
-	public static String xPathSeveritySearch											= "//*[@id='Severity_chosen']/div/div/input";
-	
-	public static String xPathIncidentOccuredToggle										= "//*[@id='ProgramId_chosen']/a/span";
-	public static String xPathIncidentOccuredSearch										= "//*[@id='ProgramId_chosen']/div/div/input";
-	
-	public static String xPathLocationOfIncidentToggle									= "//*[@id='LocationId_chosen']/a/span";
-	public static String xPathLocationOfIncidentSearch									= "//*[@id='LocationId_chosen']/div/div/input";
-	
-	public static String idPlaceOfIncident												= "PlaceofIncident";
+	public static String idSeverity_chosen												= "Severity_chosen";
+	public static String idProgramId_chosen												= "ProgramId_chosen";
+	public static String idLocationId_chosen											= "LocationId_chosen";
+	public static String idPlaceofIncident												= "PlaceofIncident";
 	public static String idFallRiskAssessmentScore										= "FallRiskAssessmentScore";
 	
 	public static String xPathContributingFactorsToggle									= "//*[@id='ContributingFactors_chosen']/a/span";
@@ -74,6 +64,13 @@ public class Constants
 	public static String idDateOfIncident												= "DateOfIncident";
 	public static String idTimeOfIncident												= "TimeOfIncident";
 	public static String idIncidentType													= "IncidentType";
+	public static String idPlaceOfIncident												= "PlaceOfIncident";
+	public static String idInjury_chosen												= "Injury_chosen";
+	public static String idResultIds_chosen												= "ResultIds_chosen";
+	public static String idNarrative													= "Narrative";
+	public static String idNurseMedReportFor_chosen										= "NurseMedReportFor_chosen";
+	public static String idNurseDateOfIncident											= "NurseDateOfIncident";
+	public static String idPhysicianMedReportFor_chosen									= "PhysicianMedReportFor_chosen";
 	
 	/*	Incidents Page	*/
 	public static String idIncidentTable												= "incident-table";
@@ -85,7 +82,7 @@ public class Constants
 	public static String xPathGeneralIncidentLeftNav									= "//*[@id='sidebar']/ul/li[3]/ul/li[1]/a";
 	
 	
-public static String xPathDashboardPageTitle=						"//body[@class='no-skin']/div[@id='main-container']/div[@class='main-content']/div[@class='page-content']/div[@class='page-content-area']/div[@class='row']/div[@class='col-xs-12']/div[@class='alert alert-block alert-success']";
+	public static String xPathDashboardPageTitle=						"//body[@class='no-skin']/div[@id='main-container']/div[@class='main-content']/div[@class='page-content']/div[@class='page-content-area']/div[@class='row']/div[@class='col-xs-12']/div[@class='alert alert-block alert-success']";
 
 	
 	/* */

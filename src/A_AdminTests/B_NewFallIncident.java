@@ -50,31 +50,31 @@ public class B_NewFallIncident
 		
 		selenium.clickElementById(Constants.idIncidentDepartment);
 		
-		selenium.waitUntilxPath(Constants.xPathAddIncidentDeptWindow);
-		
-		selenium.waitUntilxPath(Constants.xPathIncidentDepartmentAdmissions);
-		
-		selenium.clickElementByxPath(Constants.xPathIncidentDepartmentAdmissions);
-		
-		selenium.clickElementByxPath(Constants.xPathIncidentDepartmentWindowOkButton);
-		
-		selenium.clickElementByxPath(Constants.xPathSeverityToggle);
-		
-		selenium.sendKeysByxPath(Constants.xPathSeveritySearch, "5");
-		
-		selenium.enterPressByxPath(Constants.xPathSeveritySearch);
-		
-		selenium.clickElementByxPath(Constants.xPathIncidentOccuredToggle);
-		
-		selenium.sendKeysByxPath(Constants.xPathIncidentOccuredSearch, "School");
-		
-		selenium.enterPressByxPath(Constants.xPathIncidentOccuredSearch);
-		
-		selenium.clickElementByxPath(Constants.xPathLocationOfIncidentToggle);
-		
-		selenium.sendKeysByxPath(Constants.xPathLocationOfIncidentSearch, "Gym");
-		
-		selenium.enterPressByxPath(Constants.xPathLocationOfIncidentSearch);
+//		selenium.waitUntilxPath(Constants.xPathAddIncidentDeptWindow);
+//		
+//		selenium.waitUntilxPath(Constants.xPathIncidentDepartmentAdmissions);
+//		
+//		selenium.clickElementByxPath(Constants.xPathIncidentDepartmentAdmissions);
+//		
+//		selenium.clickElementByxPath(Constants.xPathIncidentDepartmentWindowOkButton);
+//		
+//		selenium.clickElementByxPath(Constants.xPathSeverityToggle);
+//		
+//		selenium.sendKeysByxPath(Constants.xPathSeveritySearch, "5");
+//		
+//		selenium.enterPressByxPath(Constants.xPathSeveritySearch);
+//		
+//		selenium.clickElementByxPath(Constants.xPathIncidentOccuredToggle);
+//		
+//		selenium.sendKeysByxPath(Constants.xPathIncidentOccuredSearch, "School");
+//		
+//		selenium.enterPressByxPath(Constants.xPathIncidentOccuredSearch);
+//		
+//		selenium.clickElementByxPath(Constants.xPathLocationOfIncidentToggle);
+//		
+//		selenium.sendKeysByxPath(Constants.xPathLocationOfIncidentSearch, "Gym");
+//		
+//		selenium.enterPressByxPath(Constants.xPathLocationOfIncidentSearch);
 		
 		selenium.clickElementById(Constants.idPlaceOfIncident);
 		
@@ -84,10 +84,10 @@ public class B_NewFallIncident
 		
 		selenium.sendKeysById(Constants.idFallRiskAssessmentScore, "Test");
 		
-		selenium.clickElementByxPath(Constants.xPathContributingFactorsToggle);
-		
-		selenium.sendKeysByxPath(Constants.xPathContributingFactorsSearch, "Dizzi");
-		
-		selenium.enterPressByxPath(Constants.xPathContributingFactorsSearch);
+//		selenium.clickElementByxPath(Constants.xPathContributingFactorsToggle);
+//		
+//		selenium.sendKeysByxPath(Constants.xPathContributingFactorsSearch, "Dizzi");
+//		
+//		selenium.enterPressByxPath(Constants.xPathContributingFactorsSearch);
 	}
 }

@@ -352,7 +352,7 @@ public class SeleniumFunctions
 	//Must open the tree first, then use this. You do NOT need to click the ok button. It is already done within this function
 	public void clickParentIncidentDeptWithinTreeByName(String deptName) throws InterruptedException
 	{
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		// Reason I use findElements is because I noticed if a user opens the tree view, then closes it, and then reopens it, the div of the old one stays on the page, however it is hidden
 		List<WebElement> containers = driver.findElements(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable ')]"));
 		List<WebElement> treeContainers = new ArrayList<WebElement>();
@@ -376,7 +376,7 @@ public class SeleniumFunctions
 			}
 		}
 		
-		WebElement treeContent = containerWeWant.findElement(By.xpath("//*[@id='rmsTree']"));
+		WebElement treeContent = containerWeWant.findElement(By.id("rmsTree"));
 		
 		List<WebElement> treeLines = treeContent.findElements(By.className("tree-branch"));
 		
@@ -386,6 +386,7 @@ public class SeleniumFunctions
 			
 			if(branchName.getText().contentEquals(deptName))
 			{
+				branchName = branchName.findElement(By.className("tree-label"));
 				branchName.click();
 				break;
 			}
@@ -433,7 +434,7 @@ public class SeleniumFunctions
 			}
 		}
 		
-		WebElement treeContent = containerWeWant.findElement(By.xpath("//*[@id='rmsTree']"));
+		WebElement treeContent = containerWeWant.findElement(By.id("rmsTree"));
 		
 		List<WebElement> treeLines = treeContent.findElements(By.className("tree-branch"));
 		
@@ -473,6 +474,25 @@ public class SeleniumFunctions
 			if(button.getText().contentEquals("OK"))
 			{
 				button.click();
+				break;
+			}
+		}
+	}
+	
+	//Must click the dropdown first
+	public void clickValueFromDropDownById(String containerId, String value)
+	{
+		WebElement container = findElementById(containerId);
+		
+		WebElement resultsContainer = container.findElement(By.className("chosen-results"));
+		
+		List<WebElement> results = resultsContainer.findElements(By.className("active-result"));
+		
+		for(WebElement result : results)
+		{
+			if(result.getText().contentEquals(value))
+			{
+				result.click();
 				break;
 			}
 		}
