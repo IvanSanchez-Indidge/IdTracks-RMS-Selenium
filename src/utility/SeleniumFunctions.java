@@ -498,6 +498,31 @@ public class SeleniumFunctions
 		}
 	}
 	
+	public String getChoiceFromDropDownById(String id)
+	{
+		String choice = null;
+		
+		return choice;
+	}
+	
+	public List<String> getChoicesFromDropDownById(String id)
+	{
+		List<String> values = new ArrayList<String>();
+		
+		WebElement container = findElementById(id);
+		
+		WebElement choicesContainer = container.findElement(By.className("chosen-choices"));
+		
+		List<WebElement> choices = choicesContainer.findElements(By.className("search-choice"));
+		
+		for(WebElement choice : choices)
+		{
+			System.out.println(choice.getText());
+		}
+		
+		return values;
+	}
+	
 	//Thangamani made this
 	public void selectSpanTextByxPath(String toggleXpath ,String searchXpath , String searchText) throws Exception
 	{

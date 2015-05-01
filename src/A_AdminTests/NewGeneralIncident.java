@@ -1,5 +1,7 @@
 package A_AdminTests;
 
+import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,21 +46,41 @@ public class NewGeneralIncident
 		
 		selenium.chooseDateInDatePicker("January", "1","2015", "5");
 		
+		String dateInPicker = selenium.findElementById(Constants.idDateOfIncident).getAttribute("value");
+		
+		assertTrue("Date was incorrect after click", dateInPicker.contentEquals("01/05/2015"));
+		
 		selenium.clickElementById(Constants.idTimeOfIncident);
 		
 		selenium.chooseTimeInTimePicker("5", "30", "PM");
+		
+		String timeInPicker = selenium.findElementById(Constants.idTimeOfIncident).getAttribute("value");
+		
+		assertTrue("Time was incorrect after click", timeInPicker.contentEquals("5:30 PM"));
 		
 		selenium.clickElementById(Constants.idIncidentType);
 		
 		selenium.clickIncidentType("Assault", "Attempted");
 		
+		String incidentType = selenium.findElementById(Constants.idIncidentType).getAttribute("value");
+		
+		assertTrue("Type was incorrect after click", incidentType.contentEquals("Attempted"));
+		
 		selenium.clickElementById(Constants.idIncidentDepartment);
 		
 		selenium.clickParentIncidentDeptWithinTreeByName("Clinic");
 		
+		String incidentDept = selenium.findElementById(Constants.idIncidentDepartment).getAttribute("value");
+		
+		assertTrue("Department was incorrect after click", incidentDept.contentEquals("Clinic"));
+		
 		selenium.clickElementById(Constants.idProgramId_chosen);
 		
 		selenium.clickValueFromDropDownById(Constants.idProgramId_chosen, "School");
+		
+//		String program = selenium.findElementById(Constants.idProgramId_chosen).getAttribute("value");
+//		
+//		assertTrue("Program was incorrect after click", program.contentEquals("School"));
 		
 		selenium.clickElementById(Constants.idLocationId_chosen);
 		
