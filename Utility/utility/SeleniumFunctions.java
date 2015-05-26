@@ -1,6 +1,6 @@
 package utility;
 
-import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +50,7 @@ public class SeleniumFunctions
 	{
 		wait = new WebDriverWait(driver, 10);
 	}
-	
-	
+
 	/* Admin login method */
 	public void adminLogin()
 	{
@@ -62,9 +61,6 @@ public class SeleniumFunctions
 		sendKeysById("Password", Constants.adminPassword);
 		
 		clickElementByxPath(Constants.xPathloginButton);
-		
-		String title = driver.getTitle();
-		assertTrue("Unsuccessful login!", title.contains("RMS | Dashboard"));
 	}
 	
 	/* Used when you want to wait for an element to appear providing its id. Used mostly when the element doesn't appear as fast as the code is executed */
@@ -138,35 +134,7 @@ public class SeleniumFunctions
 		driver.findElement(By.xpath(xPath)).clear();
 	}
 	
-	/* Select an item from a dropdown box providing its id*/
-	public void selectVisibleTextById(String id, String textToSelect)
-	{
-		element = findElementById(id);
-		clickThis = new Select(element);
-		clickThis.selectByVisibleText(textToSelect);
-	}
-	
-	public void selectVisibleTextByxPath(String xPath, String textToSelect)
-	{
-		element = findElementByxPath(xPath);
-		clickThis = new Select(element);
-		clickThis.selectByVisibleText(textToSelect);
-	}
-	
-	public void clickSpanTextById(String id, String textToSelectInSpan)
-	{
-		element = findElementByxPath("//*[@id='ProgramId']");
-		clickThis = new Select(element);
-		System.out.println(clickThis.getAllSelectedOptions());
-		System.out.println(clickThis.toString());
-		//driver.findElement(By.xpath("//*[@id='" + id + "']/a/span[contains(text(), '" + textToSelectInSpan + "')]")).click();	//Not working
-	}
-	
-	public void clickSpanTextByxPath(String xPath, String textToSelectInSpan)
-	{
-		driver.findElement(By.xpath(xPath + "[text()='" + textToSelectInSpan + "']")).click(); //Not working
-	}
-	
+	/* Click a radio box with its id and value is the text associated with that radio box */
 	public void clickRadioBoxWithIdByValue(String id, String value)
 	{
 		driver.findElement(By.xpath("//input[contains(@id, '" + id + "') and contains(@value, '" + value + "')]")).click();
@@ -195,16 +163,17 @@ public class SeleniumFunctions
 		return textFound;
 	}
 	
-	public void chooseDateInDatePicker(String monthWantedInWord, String numberOfMonthWanted, String numberOfYearWanted, String numberOfDayWanted)
+	/* Example: (dateId, January, 1, 2009, 3) or (dateId, November, 11, 2015, 13) - Must click the date field first for the calendar to show up */
+	public void chooseDateInDatePicker(String dateFieldId, String monthWantedInWord, String numberOfMonthWanted, String numberOfYearWanted, String numberOfDayWanted)
 	{
-		String dateInBox = findElementById(Constants.idDateOfIncident).getAttribute("value");
+		String dateInBox = findElementById(dateFieldId).getAttribute("value");
 		String dateWanted = numberOfMonthWanted + "/" + numberOfDayWanted + "/" + numberOfYearWanted;
 		
 		WebElement monthYear = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[2]");
 		
 		WebElement prevArrow = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[1]");
 		WebElement nextArrow = findElementByxPath("//table[@class=' table-condensed']/thead/tr[1]/th[3]");
-		
+			
 		String[] initialMonthYearInPicker = monthYear.getText().split("\\s+");
 		
 		int initialYear = Integer.parseInt(initialMonthYearInPicker[1]);
@@ -319,33 +288,37 @@ public class SeleniumFunctions
 		}
 	}
 	
-	public void chooseTimeInTimePicker(String hourWanted, String minuteWanted, String meridianWanted)
+	/* Example: (1, 01, PM) or (5, 30, AM) - Must click the time field first for the time picker to show up */
+	public void chooseTimeInTimePicker(String timeFieldId, String hourWanted, String minuteWanted, String meridianWanted)
 	{
-		WebElement hour = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[1]/input"));
-		WebElement minute = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[3]/input"));
-		WebElement meridian = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[5]/input"));
+		String timeInBox = findElementById(timeFieldId).getAttribute("value");
+		String timeWanted = hourWanted + ":" + minuteWanted + " " + meridianWanted;
 		
-		WebElement incrementHourArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[1]"));
-		WebElement incrementMinuteArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[3]"));
-		
-		//WebElement decrementHourArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[3]/td[1]"));
-		//WebElement decrementMinuteArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[3]/td[3]"));
-		
-		WebElement incrementMeridianArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[5]"));
-		
-		while(!hour.getAttribute("value").contentEquals(hourWanted))
+		if(!timeInBox.contentEquals(timeWanted))
 		{
-			incrementHourArrow.click();
-		}
-		
-		while(!minute.getAttribute("value").contentEquals(minuteWanted))
-		{
-			incrementMinuteArrow.click();
-		}
-		
-		while(!meridian.getAttribute("value").contentEquals(meridianWanted))
-		{
-			incrementMeridianArrow.click();
+			WebElement hour = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[1]/input"));
+			WebElement minute = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[3]/input"));
+			WebElement meridian = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[2]/td[5]/input"));
+			
+			WebElement incrementHourArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[1]"));
+			WebElement incrementMinuteArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[3]"));
+			
+			WebElement incrementMeridianArrow = driver.findElement(By.xpath("//*[contains(concat(' ', normalize-space(@class), ' '), ' bootstrap-timepicker-widget ')]/table/tbody/tr[1]/td[5]"));
+			
+			while(!hour.getAttribute("value").contentEquals(hourWanted))
+			{
+				incrementHourArrow.click();
+			}
+			
+			while(!minute.getAttribute("value").contentEquals(minuteWanted))
+			{
+				incrementMinuteArrow.click();
+			}
+			
+			while(!meridian.getAttribute("value").contentEquals(meridianWanted))
+			{
+				incrementMeridianArrow.click();
+			}
 		}
 	}
 	
@@ -498,13 +471,17 @@ public class SeleniumFunctions
 		}
 	}
 	
-	public String getChoiceFromDropDownById(String id)
+	/* Generally used for assertions */
+	public String getValueFromDropDownById(String dropdownId)
 	{
-		String choice = null;
+		WebElement container = findElementById(dropdownId);
 		
-		return choice;
+		WebElement valueContainer = container.findElement(By.className("chosen-single"));
+		
+		return valueContainer.getText();
 	}
 	
+	/* Generally used for assertions */
 	public List<String> getChoicesFromDropDownById(String id)
 	{
 		List<String> values = new ArrayList<String>();
@@ -517,7 +494,7 @@ public class SeleniumFunctions
 		
 		for(WebElement choice : choices)
 		{
-			System.out.println(choice.getText());
+			values.add(choice.getText());
 		}
 		
 		return values;
@@ -534,11 +511,13 @@ public class SeleniumFunctions
 		
 	}
 	
+	/* Returns total number of entries in a table */
 	public int findNumRowsInTableById(String tableId)
 	{
 		return driver.findElements(By.xpath("//table[@id='" + tableId + "']/tbody/tr")).size();
 	}
 	
+	/* Returns total number of entries in a table */
 	public int findNumRowsInTableByxPath(String xPath)
 	{
 		return driver.findElements(By.xpath(xPath)).size();

@@ -1,4 +1,4 @@
-package Incidents;
+package A_Incidents;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -66,11 +66,11 @@ public class Details
 		
 		selenium.clickElementById(Constants.idDateofIncident);
 		
-		selenium.chooseDateInDatePicker("April", "4", "2015", "23");
+		selenium.chooseDateInDatePicker(Constants.idDateofIncident, "April", "4", "2015", "23");
 		
 		selenium.clickElementById(Constants.idTimeofIncident);
 		
-		selenium.chooseTimeInTimePicker("1", "02", "AM");
+		selenium.chooseTimeInTimePicker(Constants.idTimeofIncident, "1", "02", "AM");
 		
 		selenium.clickElementByxPath(Constants.xPathIncidentTypeTab);
 		
@@ -137,11 +137,11 @@ public class Details
 		
 		selenium.clickElementById(Constants.idNurseDateofIncident);
 		
-		selenium.chooseDateInDatePicker("May", "5", "2015", "21");
+		selenium.chooseDateInDatePicker(Constants.idNurseDateofIncident, "May", "5", "2015", "21");
 		
 		selenium.clickElementById(Constants.idNurseTimeOfIncident);
 		
-		selenium.chooseTimeInTimePicker("1", "03", "AM");
+		selenium.chooseTimeInTimePicker(Constants.idNurseTimeOfIncident, "1", "03", "AM");
 						
 		selenium.sendKeysById(Constants.idNurseFirstName, "Mary");
 		
@@ -155,7 +155,7 @@ public class Details
 		
 		selenium.clickElementById(Constants.idPhysicianDateOfIncident);
 		
-		selenium.chooseDateInDatePicker("June", "6", "2015", "21");
+		selenium.chooseDateInDatePicker(Constants.idPhysicianDateOfIncident, "June", "6", "2015", "21");
 						
 		//selenium.clickElementById(Constants.idPhysicianTimeOfIncident);
 		
