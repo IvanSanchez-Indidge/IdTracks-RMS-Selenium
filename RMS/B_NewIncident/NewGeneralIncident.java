@@ -142,6 +142,7 @@ public class NewGeneralIncident
 		assertTrue("Size of list is wrong", results.size() == 2);
 		
 		assertTrue("First aid not in list", results.contains(firstAid));
+		assertTrue("ER not in list", results.contains(er));
 		
 		selenium.clickElementById(Constants.idNarrative);
 		
@@ -161,11 +162,11 @@ public class NewGeneralIncident
 		
 		selenium.clickElementById(Constants.idNurseDateOfIncident);
 		
-		selenium.chooseDateInDatePicker(Constants.idNurseDateOfIncident, "February", "2", "2005", "2");
+		selenium.chooseDateInDatePicker(Constants.idNurseDateOfIncident, "February", "2", "2015", "2");
 		
 		String nurseDateOfIncident = selenium.findElementById(Constants.idNurseDateOfIncident).getAttribute("value");
 		
-		assertTrue("Nurse Date of Incident was incorrect after click", nurseDateOfIncident.contentEquals("02/02/2005"));
+		assertTrue("Nurse Date of Incident was incorrect after click", nurseDateOfIncident.contentEquals("02/02/2015"));
 		
 		selenium.clickElementById(Constants.idNurseTimeOfIncident);
 		
@@ -217,11 +218,11 @@ public class NewGeneralIncident
 		
 		selenium.clickElementById(Constants.idPhysicianDateOfIncident);
 		
-		selenium.chooseDateInDatePicker(Constants.idPhysicianDateOfIncident, "January", "1", "2007", "25");
+		selenium.chooseDateInDatePicker(Constants.idPhysicianDateOfIncident, "January", "1", "2015", "25");
 		
 		String physicianDateOfIncident = selenium.findElementById(Constants.idPhysicianDateOfIncident).getAttribute("value");
 		
-		assertTrue("Physician Date of Incident was incorrect after click", physicianDateOfIncident.contentEquals("01/25/2007"));
+		assertTrue("Physician Date of Incident was incorrect after click", physicianDateOfIncident.contentEquals("01/25/2015"));
 		
 		selenium.clickElementById(Constants.idPhysicianTimeOfIncident);
 		
@@ -284,7 +285,7 @@ public class NewGeneralIncident
 		String detailsPlaceOfIncident = selenium.findElementById(Constants.idPlaceOfIncident).getAttribute("value");
 		String detailsInjuryId = selenium.findElementById(Constants.idInjury_chosen).getText();
 		String detailsSeverity = selenium.findElementById(Constants.idSeverity_chosen).getText();
-		//String detailsResult;
+		List<String> detailsResult = selenium.getChoicesFromDropDownById(Constants.idResultIds_chosen);
 		String detailsNarrative = selenium.findElementById(Constants.idNarrative).getAttribute("value");
 		String detailsNurseMedReport = selenium.findElementById(Constants.idNurseMedReportFor_chosen).getText();
 		String detailsNurseDateOfIncident = selenium.findElementById(Constants.idNurseDateofIncident).getAttribute("value");
@@ -301,6 +302,9 @@ public class NewGeneralIncident
 		String detailsPhysicianTitle = selenium.findElementById(Constants.idPhysicianTitle).getAttribute("value");
 		String detailsPhysicianReport = selenium.findElementById(Constants.idPhysicianReport).getAttribute("value");
 		
+		selenium.sortStringList(results);
+		selenium.sortStringList(detailsResult);
+		
 		assertTrue("Wrong Incident Number", detailsIncidentNumber.contentEquals(incidentNumber));
 		assertTrue("Wrong Reported By", detailsReportedBy.contentEquals(reportedBy));
 		assertTrue("Wrong Date of Incident", detailsDateOfIncident.contentEquals(dateInPicker));
@@ -312,7 +316,7 @@ public class NewGeneralIncident
 		assertTrue("Wrong Place of incident", detailsPlaceOfIncident.contentEquals(placeOfIncident));
 		assertTrue("Wrong Injury", detailsInjuryId.contentEquals(injury));
 		assertTrue("Wrong Severity", detailsSeverity.contentEquals(severity));
-		//assertTrue("Wrong Results", detailsResult.contentEquals(results));
+		assertTrue("Wrong Results", detailsResult.equals(results));
 		assertTrue("Wrong Narrative", detailsNarrative.contentEquals(narrative));
 		assertTrue("Wrong Nurse Med Report", detailsNurseMedReport.contentEquals(nurseMedReport));
 		assertTrue("Wrong Nurse Date Of Incident", detailsNurseDateOfIncident.contentEquals(nurseDateOfIncident));
@@ -353,13 +357,17 @@ public class NewGeneralIncident
 		
 		String reportedBy = selenium.findElementById(Constants.idReportedBy).getAttribute("value");
 		
-		selenium.clickElementById(Constants.idDateOfIncident);
-		
-		selenium.chooseDateInDatePicker(Constants.idDateOfIncident, "January", "1","2015", "5");
+//		selenium.clickElementById(Constants.idDateOfIncident);
+//		
+//		selenium.chooseDateInDatePicker(Constants.idDateOfIncident, "January", "1","2015", "5");
 		
 		String dateInPicker = selenium.findElementById(Constants.idDateOfIncident).getAttribute("value");
 		
-		assertTrue("Date was incorrect after click", dateInPicker.contentEquals("01/05/2015"));
+//		assertTrue("Date was incorrect after click", dateInPicker.contentEquals("01/05/2015"));
+		
+		selenium.clickElementById(Constants.idTimeOfIncident);
+		
+		selenium.chooseTimeInTimePicker(Constants.idTimeOfIncident, "12", "28", "AM");
 		
 //		String timeInPicker = selenium.findElementById(Constants.idTimeOfIncident).getAttribute("value");
 		
@@ -371,7 +379,7 @@ public class NewGeneralIncident
 		
 		assertTrue("Type was incorrect after click", incidentType.contentEquals("Attempted"));
 		
-//		String incidentDept = selenium.findElementById(Constants.idIncidentDepartment).getAttribute("value");
+		String incidentDept = selenium.findElementById(Constants.idIncidentDepartment).getAttribute("value");
 		
 		selenium.clickElementById(Constants.idProgramId_chosen);
 		
@@ -381,7 +389,7 @@ public class NewGeneralIncident
 		
 		assertTrue("Program was incorrect after click", program.contentEquals("School"));
 		
-//		String location = selenium.getValueFromDropDownById(Constants.idLocationId_chosen);
+		String location = selenium.getValueFromDropDownById(Constants.idLocationId_chosen);
 		
 		selenium.clickElementById(Constants.idPlaceOfIncident);
 		
@@ -395,7 +403,7 @@ public class NewGeneralIncident
 		 * Grid testing goes here
 		*/
 		
-//		String injury = selenium.getValueFromDropDownById(Constants.idInjury_chosen);
+		String injury = selenium.getValueFromDropDownById(Constants.idInjury_chosen);
 		
 		selenium.clickElementById(Constants.idSeverity_chosen);
 		
@@ -421,6 +429,7 @@ public class NewGeneralIncident
 		assertTrue("Size of list is wrong", results.size() == 2);
 		
 		assertTrue("First aid not in list", results.contains(firstAid));
+		assertTrue("ER not in list", results.contains(er));
 		
 		selenium.clickElementById(Constants.idNarrative);
 		
@@ -430,15 +439,15 @@ public class NewGeneralIncident
 		
 		assertTrue("Narrative was incorrect after typing", narrative.contentEquals("I fell and broke my arm. No one was around to help me."));
 		
-//		String nurseMedReport = selenium.getValueFromDropDownById(Constants.idNurseMedReportFor_chosen);
+		String nurseMedReport = selenium.getValueFromDropDownById(Constants.idNurseMedReportFor_chosen);
 		
 		selenium.clickElementById(Constants.idNurseDateOfIncident);
 		
-		selenium.chooseDateInDatePicker(Constants.idNurseDateOfIncident, "February", "2", "2005", "2");
+		selenium.chooseDateInDatePicker(Constants.idNurseDateOfIncident, "February", "2", "2015", "2");
 		
 		String nurseDateOfIncident = selenium.findElementById(Constants.idNurseDateOfIncident).getAttribute("value");
 		
-		assertTrue("Nurse Date of Incident was incorrect after click", nurseDateOfIncident.contentEquals("02/02/2005"));
+		assertTrue("Nurse Date of Incident was incorrect after click", nurseDateOfIncident.contentEquals("02/02/2015"));
 		
 		selenium.clickElementById(Constants.idNurseTimeOfIncident);
 		
@@ -456,7 +465,7 @@ public class NewGeneralIncident
 		
 		assertTrue("Nurse First Name was incorrect after click", nurseFirstName.contentEquals("Ivan"));
 		
-//		String nurseLastName = selenium.findElementById(Constants.idNurseLastName).getAttribute("value");
+		String nurseLastName = selenium.findElementById(Constants.idNurseLastName).getAttribute("value");
 		
 		selenium.clickElementById(Constants.idNurseTitle);
 		
@@ -474,15 +483,9 @@ public class NewGeneralIncident
 		
 		assertTrue("Nurse Report was incorrect after click", nurseReport.contentEquals("Found the victim laying on the ground  with a broken arm."));
 		
-		selenium.clickElementById(Constants.idPhysicianMedReportFor_chosen);
-		
-		selenium.clickValueFromDropDownById(Constants.idPhysicianMedReportFor_chosen, "Patient");
-		
 		String physicianMedReport = selenium.getValueFromDropDownById(Constants.idPhysicianMedReportFor_chosen);
 		
-		assertTrue("Physician Med Report was incorrect after click", physicianMedReport.contentEquals("Patient"));
-		
-//		String physicianDateOfIncident = selenium.findElementById(Constants.idPhysicianDateOfIncident).getAttribute("value");
+		String physicianDateOfIncident = selenium.findElementById(Constants.idPhysicianDateOfIncident).getAttribute("value");
 		
 		selenium.clickElementById(Constants.idPhysicianTimeOfIncident);
 		
@@ -537,7 +540,7 @@ public class NewGeneralIncident
 		String detailsIncidentNumber = selenium.findElementById(Constants.idIncidentNumber).getAttribute("value");
 		String detailsReportedBy = selenium.findElementById(Constants.idReportedBy).getAttribute("value");
 		String detailsDateOfIncident = selenium.findElementById(Constants.idDateOfIncident).getAttribute("value");
-		String detailsTimeOfIncident = selenium.findElementById(Constants.idTimeOfIncident).getAttribute("value");
+//		String detailsTimeOfIncident = selenium.findElementById(Constants.idTimeOfIncident).getAttribute("value");
 		String detailsIncidentType = selenium.findElementById(Constants.idIncidentType).getAttribute("value");
 		String detailsIncidentDept = selenium.findElementById(Constants.idIncidentDepartment).getAttribute("value");
 		String detailsProgramId = selenium.findElementById(Constants.idProgramId_chosen).getText();
@@ -545,7 +548,7 @@ public class NewGeneralIncident
 		String detailsPlaceOfIncident = selenium.findElementById(Constants.idPlaceOfIncident).getAttribute("value");
 		String detailsInjuryId = selenium.findElementById(Constants.idInjury_chosen).getText();
 		String detailsSeverity = selenium.findElementById(Constants.idSeverity_chosen).getText();
-		//String detailsResult;
+		List<String> detailsResult = selenium.getChoicesFromDropDownById(Constants.idResultIds_chosen);
 		String detailsNarrative = selenium.findElementById(Constants.idNarrative).getAttribute("value");
 		String detailsNurseMedReport = selenium.findElementById(Constants.idNurseMedReportFor_chosen).getText();
 		String detailsNurseDateOfIncident = selenium.findElementById(Constants.idNurseDateofIncident).getAttribute("value");
@@ -562,28 +565,31 @@ public class NewGeneralIncident
 		String detailsPhysicianTitle = selenium.findElementById(Constants.idPhysicianTitle).getAttribute("value");
 		String detailsPhysicianReport = selenium.findElementById(Constants.idPhysicianReport).getAttribute("value");
 		
+		selenium.sortStringList(results);
+		selenium.sortStringList(detailsResult);
+		
 		assertTrue("Wrong Incident Number", detailsIncidentNumber.contentEquals(incidentNumber));
 		assertTrue("Wrong Reported By", detailsReportedBy.contentEquals(reportedBy));
 		assertTrue("Wrong Date of Incident", detailsDateOfIncident.contentEquals(dateInPicker));
-		assertTrue("Wrong Time of Incident", detailsTimeOfIncident.contentEquals(""));
+		//assertTrue("Wrong Time of Incident", detailsTimeOfIncident.contentEquals(timeInPicker));
 		assertTrue("Wrong Incident Type", detailsIncidentType.contentEquals(incidentType));
-		assertTrue("Wrong Incident Dept", detailsIncidentDept.contentEquals(""));
+		assertTrue("Wrong Incident Dept", detailsIncidentDept.contentEquals(incidentDept));
 		assertTrue("Wrong Program", detailsProgramId.contentEquals(program));
-		assertTrue("Wrong Location", detailsLocationId.contentEquals("Select the Location..."));
+		assertTrue("Wrong Location", detailsLocationId.contentEquals(location));
 		assertTrue("Wrong Place of incident", detailsPlaceOfIncident.contentEquals(placeOfIncident));
-		assertTrue("Wrong Injury", detailsInjuryId.contentEquals("Select an option..."));
+		assertTrue("Wrong Injury", detailsInjuryId.contentEquals(injury));
 		assertTrue("Wrong Severity", detailsSeverity.contentEquals(severity));
-		//assertTrue("Wrong Results", detailsResult.contentEquals(results));
+		assertTrue("Wrong Results", detailsResult.equals(results));
 		assertTrue("Wrong Narrative", detailsNarrative.contentEquals(narrative));
-		assertTrue("Wrong Nurse Med Report", detailsNurseMedReport.contentEquals("Select a report for..."));
+		assertTrue("Wrong Nurse Med Report", detailsNurseMedReport.contentEquals(nurseMedReport));
 		assertTrue("Wrong Nurse Date Of Incident", detailsNurseDateOfIncident.contentEquals(nurseDateOfIncident));
 		assertTrue("Wrong Nurse Time Of Incident", detailsNurseTimeOfIncident.contentEquals(nurseTimeOfIncident));
 		assertTrue("Wrong Nurse First Name", detailsNurseFirstName.contentEquals(nurseFirstName));
-		assertTrue("Wrong Nurse Last Name", detailsNurseLastName.contentEquals(""));
+		assertTrue("Wrong Nurse Last Name", detailsNurseLastName.contentEquals(nurseLastName));
 		assertTrue("Wrong Nurse Title", detailsNurseTitle.contentEquals(nurseTitle));
 		assertTrue("Wrong Nurse Report", detailsNurseReport.contentEquals(nurseReport));
 		assertTrue("Wrong Nurse Med Report", detailsPhysicianMedReport.contentEquals(physicianMedReport));
-		assertTrue("Wrong Physician Date Of Incident", detailsPhysicianDateOfIncident.contentEquals(""));
+		assertTrue("Wrong Physician Date Of Incident", detailsPhysicianDateOfIncident.contentEquals(physicianDateOfIncident));
 		assertTrue("Wrong Physician Time Of Incident", detailsPhysicianTimeOfIncident.contentEquals(physicianTimeOfIncident));
 		assertTrue("Wrong Physican First Name", detailsPhysicianFirstName.contentEquals(physicianFirstName));
 		assertTrue("Wrong Physician Last Name", detailsPhysicianLastName.contentEquals(physicianLastName));
@@ -635,7 +641,7 @@ public class NewGeneralIncident
 		String detailsPlaceOfIncident = selenium.findElementById(Constants.idPlaceOfIncident).getAttribute("value");
 		String detailsInjuryId = selenium.findElementById(Constants.idInjury_chosen).getText();
 		String detailsSeverity = selenium.findElementById(Constants.idSeverity_chosen).getText();
-		//String detailsResult;
+		List<String> detailsResult = selenium.getChoicesFromDropDownById(Constants.idResultIds_chosen);
 		String detailsNarrative = selenium.findElementById(Constants.idNarrative).getAttribute("value");
 		String detailsNurseMedReport = selenium.findElementById(Constants.idNurseMedReportFor_chosen).getText();
 		String detailsNurseDateOfIncident = selenium.findElementById(Constants.idNurseDateofIncident).getAttribute("value");
@@ -652,6 +658,8 @@ public class NewGeneralIncident
 		String detailsPhysicianTitle = selenium.findElementById(Constants.idPhysicianTitle).getAttribute("value");
 		String detailsPhysicianReport = selenium.findElementById(Constants.idPhysicianReport).getAttribute("value");
 		
+		selenium.sortStringList(detailsResult);
+		
 		assertTrue("Wrong Incident Number", detailsIncidentNumber.contentEquals(incidentNumber));
 		assertTrue("Wrong Reported By", detailsReportedBy.contentEquals(reportedBy));
 		assertTrue("Wrong Date of Incident", detailsDateOfIncident.contentEquals(""));
@@ -663,7 +671,7 @@ public class NewGeneralIncident
 		assertTrue("Wrong Place of incident", detailsPlaceOfIncident.contentEquals(""));
 		assertTrue("Wrong Injury", detailsInjuryId.contentEquals("Select an option..."));
 		assertTrue("Wrong Severity", detailsSeverity.contentEquals("Select a severity..."));
-		//assertTrue("Wrong Results", detailsResult.contentEquals(results));
+		assertTrue("Wrong Results", detailsResult.size() == 0);
 		assertTrue("Wrong Narrative", detailsNarrative.contentEquals(""));
 		assertTrue("Wrong Nurse Med Report", detailsNurseMedReport.contentEquals("Select a report for..."));
 		assertTrue("Wrong Nurse Date Of Incident", detailsNurseDateOfIncident.contentEquals(""));

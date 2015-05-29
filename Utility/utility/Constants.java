@@ -78,7 +78,7 @@ public class Constants
 	public static String idAcuityLevel													= "AcuityLevel";
 	public static String idOtherComments												= "OtherComments";
 	
-	public static String xPathSubmitButton												= "//*[@id='main-container']/div[2]/div/div/div[2]/div/form/div[2]/div/div/button[1]";
+	public static String xPathFallIncidentSubmitButton									= "//*[@id='main-container']/div[2]/div/div/div[2]/div/form/div[2]/div/div/button[1]";
 	public static String xPathResetButton												= "//*[@id='main-container']/div[2]/div/div/div[2]/div/form/div[2]/div/div/button[2]";
 	
 	/*	New General Incident Page xPath's and ID's	*/

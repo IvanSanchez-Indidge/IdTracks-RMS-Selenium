@@ -140,6 +140,12 @@ public class SeleniumFunctions
 		driver.findElement(By.xpath("//input[contains(@id, '" + id + "') and contains(@value, '" + value + "')]")).click();
 	}
 	
+	/* Click a radio box with its id and value is the text associated with that radio box */
+	public boolean isRadioBoxSelectedWithIdByValue(String id, String value)
+	{
+		return driver.findElement(By.xpath("//input[contains(@id, '" + id + "') and contains(@value, '" + value + "')]")).isSelected();
+	}
+	
 	/* Find text within a table providing the tableId. You want to first search for what you're looking for, then use this. Searching an entire table not yet implemented */
 	public boolean findTextInTableById(String tableId, String textYouAreLookingFor)
 	{
@@ -531,5 +537,10 @@ public class SeleniumFunctions
 	public void enterPressByxPath(String xPath)
 	{
 		driver.findElement(By.xpath(xPath)).sendKeys(Keys.RETURN);
+	}
+	
+	public void sortStringList(List<String> list)
+	{
+		java.util.Collections.sort(list);
 	}
 }
